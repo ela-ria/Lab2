@@ -1,0 +1,58 @@
+version: '3.8'
+
+services:
+  # PHP with Apache
+  php-apache:
+    build: .
+    container_name: lab2-php-apache
+    ports:
+      - "8080:80"
+    volumes:
+      - ./src:/var/www/html
+    depends_on:
+      - mysql
+    networks:
+      - app-network
+
+
+  # MySQL Database
+  mysql:
+    image: mysql:8.0
+    container_name: lab2-mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_DATABASE: lab2
+      MYSQL_USER: myapp_user
+      MYSQL_PASSWORD: myapp_password
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql-data:/var/lib/mysql
+    networks:
+      - app-network
+
+  # phpMyAdmin
+  phpmyadmin:
+    image: phpmyadmin:latest
+    container_name: lab2-phpmyadmin
+    restart: always
+    ports:
+      - "8081:80"
+    environment:
+      PMA_HOST: mysql
+      PMA_PORT: 3306
+      MYSQL_ROOT_PASSWORD: rootpassword
+    depends_on:
+      - mysql
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
+
+volumes:
+  mysql-data:
+
+  
