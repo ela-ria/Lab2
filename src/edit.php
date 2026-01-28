@@ -46,11 +46,16 @@ if (!$task) {
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
 </head>
-<body class="bg-light">
+<body>
+<style>
+  body {
+    background-color: #fce7f3; 
+  }
+  </style>
 
 <div class="container py-4">
   <div class="d-flex align-items-center justify-content-between mb-3">
-    <h3 class="m-0">Edit Task #<?= (int)$task['id'] ?></h3>
+    <h3 class="m-0">Edit your task no. <?= (int)$task['id'] ?></h3>
     <a href="index.php" class="btn btn-outline-dark">
       <i class="bi bi-arrow-left me-1"></i> Back
     </a>

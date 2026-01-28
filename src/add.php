@@ -14,7 +14,7 @@ $status = $_POST['status'] ?? 'To Do';
 $allowed = ['To Do', 'In Progress', 'Completed'];
 if (!in_array($status, $allowed, true)) $status = 'To Do';
 
-// Normalize empty due_date -> NULL
+
 if ($due_date === '') $due_date = null;
 
 if ($title === '' || $description === '') {
